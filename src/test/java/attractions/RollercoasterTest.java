@@ -17,9 +17,9 @@ public class RollercoasterTest {
     @Before
     public void setUp() {
         rollerCoaster = new RollerCoaster("Blue Ridge", 10);
-        visitor = new Visitor(13, 1.5, 5.0);
-        youngVisitor = new Visitor(9, 1.5, 5.0);
-        shortVisitor = new Visitor(13, 1.3, 5.0);
+        visitor = new Visitor(13, 2.1, 10.0);
+        youngVisitor = new Visitor(9, 1.5, 10.0);
+        shortVisitor = new Visitor(13, 1.3, 10.0);
     }
 
     @Test
@@ -50,4 +50,20 @@ public class RollercoasterTest {
     public void cannotRideRollerCoasterTooShort() {
         assertFalse(rollerCoaster.isAllowedTo(shortVisitor));
     }
+
+    @Test
+    public void hasDefaultPrice() {
+        assertEquals(8.4, rollerCoaster.defaultPrice(), 0.1);
+    }
+
+    @Test
+    public void canGetNormalPrice() {
+        assertEquals(8.4, rollerCoaster.priceFor(youngVisitor), 0.1);
+    }
+
+    @Test
+    public void canGetDoublePrice() {
+        assertEquals(16.8, rollerCoaster.priceFor(visitor), 0.1);
+    }
+
 }
